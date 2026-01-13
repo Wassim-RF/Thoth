@@ -12,5 +12,13 @@
             $this->studentRepositories = $studentRepositories;
         }
         
-        public function register() {}
+        public static function ifIsLogin() {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['student'])) {
+                header("Location: /login");
+                exit();
+            }
+        }
     }
