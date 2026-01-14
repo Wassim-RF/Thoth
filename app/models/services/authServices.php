@@ -11,6 +11,24 @@
         public function __construct(StudentRepositories $studentRepositories) {
             $this->studentRepositories = $studentRepositories;
         }
+
+        public function login(string $email , string $password) {
+            $student = $this->studentRepositories->findStudentByEmail($email);
+            if (!$student) {
+                echo "Vous n'avez pas un compte.";
+                return;
+            }
+
+            if ($student) {
+                if(password_verify($password , $student['password'])) {
+                    $_SESSION['student'] = [
+                        'name' => $student['name'],
+                        'email' => $student['email']
+                    ];
+                }
+            }
+
+        }
         
         public static function ifIsLogin() {
             if (session_status() === PHP_SESSION_NONE) {

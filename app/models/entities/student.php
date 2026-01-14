@@ -19,19 +19,25 @@
             return $this->id;
         }
         public function setName(string $name) {
-            $this->name = $name;
+            if (!empty($name)) {
+                $this->name = $name;
+            }
         }
         public function getName() {
             return $this->name;
         }
         public function setEmail(string $email) {
-            $this->email = $email;
+            if (filter_var($email , FILTER_VALIDATE_EMAIL) && !empty($email)) {
+                $this->email = $email;
+            }
         }
         public function getEmail() {
             return $this->email;
         }
         public function setPassword(string $password) {
-            $this->password = $password;
+            if (!empty($password)) {
+                $this->password = $password;
+            }
         }
         public function getPassword() {
             return $this->password;

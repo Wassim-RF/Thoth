@@ -22,7 +22,7 @@
                         id="email" 
                         name="email_login--input"
                         placeholder="you@example.com" 
-                        class="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
+                        class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
                     >
                 </div>
 
@@ -34,7 +34,7 @@
                             id="password"
                             name="password_login--input" 
                             placeholder="Enter your password" 
-                            class="w-full px-4 py-3 rounded-lg bg-gray-100 border-transparent focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
+                            class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
                         >
                         <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
