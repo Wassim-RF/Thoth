@@ -6,8 +6,9 @@
     use App\Controllers\AuthController;
 
     $router = new Router();
+    $auth = new AuthController();
 
-    $router->add('GET' , '/' , 'AuthController@index');
-    $router->add('GET' , '/login' , 'AuthController@showLoginPage');
+    $router->add('GET', '/', [AuthController::class , 'index']);
+    $router->add('GET', '/login', [AuthController::class , 'showLoginPage']);
 
     $router->dispatch();
