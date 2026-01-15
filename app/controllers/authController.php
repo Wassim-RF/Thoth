@@ -5,9 +5,15 @@
     require_once __DIR__ . '/../models/repositories/studentRepositories.php';
 
     use App\Models\Services\AuthServices;
+    use App\Models\Repositories\StudentRepositories;
 
     class AuthController {
         private AuthServices $authServices;
+
+        public function __construct() {
+            $studentRepo = new StudentRepositories();
+            $this->authServices = new AuthServices($studentRepo);
+        }
         public function index() {
             header("Location: /login");
             exit();
@@ -22,8 +28,24 @@
         }
 
         public function login() {
-            $email_input = $_POST['email_login--input'];
-            $password_input = $_POST['password_login--input'];
-            $this->authServices->login($email_input , $password_input);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $email_input = $_POST['email_login--input'];
+                $password_input = $_POST['password_login--input'];
+                $this->authServices->login($email_input , $password_input);
+            }
+        }
+
+        public function register() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $name = $_POST['name_register--input'];
+                $email = $_POST['email_register--input'];
+                $password = $_POST['password_register--input'];
+                $passwordConfirm = $_POST['password_register_confirm--input'];
+                if ($password !== $passwordConfirm) {
+                    return null;
+                }
+                $password = password_hash($password , PASSWORD_DEFAULT);
+                $this->authServices->register($name , $email , $password);
+            }
         }
     }

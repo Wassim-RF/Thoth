@@ -6,10 +6,11 @@
     use App\Controllers\AuthController;
 
     $router = new Router();
-    $auth = new AuthController();
 
     $router->add('GET', '/', [AuthController::class , 'index']);
     $router->add('GET', '/login', [AuthController::class , 'showLoginPage']);
     $router->add('GET', '/register', [AuthController::class , 'showRegisterPage']);
+    $router->add('POST', '/login', [AuthController::class , 'login']);
+    $router->add('POST', '/register', [AuthController::class , 'register']);
 
     $router->dispatch();

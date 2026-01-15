@@ -14,7 +14,7 @@
                 <p class="text-gray-500 mt-2 text-sm">Sign in to continue your learning journey</p>
             </div>
 
-            <form action="#" class="space-y-5">
+            <form action="/register" method="POST" class="space-y-5">
                 <div>
                     <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Full Name</label>
                     <input 
@@ -56,7 +56,7 @@
                     <input 
                         type="password" 
                         id="password" 
-                        name="password_register--input"
+                        name="password_register_confirm--input"
                         placeholder="Create a strong password" 
                         class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
                         required

@@ -1,8 +1,10 @@
 <?php
     namespace App\Models\Services;
 
+    require_once __DIR__ . '/../entities/student.php';
     require_once __DIR__ . '/../repositories/studentRepositories.php';
 
+    use App\Models\Entities\Student;
     use App\Models\Repositories\StudentRepositories;
 
     class AuthServices {
@@ -24,7 +26,15 @@
                     ];
                 }
             }
+        }
 
+        public function register(string $name , string $email , string $password) {
+            $student = $this->studentRepositories->findStudentByEmail($email);
+            if ($student) return null;
+
+            $student = new Student($name , $email , $password);
+
+            $this->studentRepositories->createStudent($student);
         }
         
         public static function ifIsLogin() {
