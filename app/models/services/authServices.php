@@ -14,10 +14,7 @@
 
         public function login(string $email , string $password) {
             $student = $this->studentRepositories->findStudentByEmail($email);
-            if (!$student) {
-                echo "Vous n'avez pas un compte.";
-                return;
-            }
+            if (!$student) return null;
 
             if ($student) {
                 if(password_verify($password , $student['password'])) {

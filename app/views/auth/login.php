@@ -14,7 +14,7 @@
                 <p class="text-gray-500 mt-2 text-sm">Sign in to continue your learning journey</p>
             </div>
 
-            <form class="space-y-5">
+            <form method="POST" action="/login" class="space-y-5">
                 <div>
                     <label for="email" class="block text-sm font-bold text-gray-700 mb-1">Email Address</label>
                     <input 
@@ -23,6 +23,7 @@
                         name="email_login--input"
                         placeholder="you@example.com" 
                         class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
+                        required
                     >
                 </div>
 
@@ -35,6 +36,7 @@
                             name="password_login--input" 
                             placeholder="Enter your password" 
                             class="w-full px-4 py-3 rounded-lg bg-gray-100 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-700 placeholder-gray-400 border border-gray-200"
+                            required
                         >
                         <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +66,7 @@
             </form>
 
             <p class="mt-8 text-center text-sm text-gray-600">
-                Don't have an account? <a href="#" class="font-bold text-blue-600 hover:text-blue-500 hover:underline">Create Account</a>
+                Don't have an account? <a href="/register" class="font-bold text-blue-600 hover:text-blue-500 hover:underline">Create Account</a>
             </p>
         </section>
     </div>

@@ -10,5 +10,6 @@
 
     $router->add('GET', '/', [AuthController::class , 'index']);
     $router->add('GET', '/login', [AuthController::class , 'showLoginPage']);
+    $router->add('GET', '/register', [AuthController::class , 'showRegisterPage']);
 
     $router->dispatch();
