@@ -24,7 +24,7 @@
     <a href="/profile" class="flex items-center gap-4">
         <div class="flex items-center gap-3 pl-2 cursor-pointer">
             <div class="flex items-center justify-center w-10 h-10 text-white bg-blue-600 rounded-full font-semibold">
-                JS
+                <?= $_SESSION['student']['name'][0] ?>
             </div>
             <div class="hidden md:block leading-tight">
                 <h4 class="text-sm font-bold text-gray-800"><?= $_SESSION['student']['name'] ?></h4>
