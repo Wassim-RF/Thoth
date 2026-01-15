@@ -31,7 +31,11 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $email_input = $_POST['email_login--input'];
                 $password_input = $_POST['password_login--input'];
-                $this->authServices->login($email_input , $password_input);
+                $student = $this->authServices->login($email_input , $password_input);
+                if ($student !== null) {
+                    header("Location: /home");
+                    exit();
+                }
             }
         }
 
@@ -46,6 +50,10 @@
                 }
                 $password = password_hash($password , PASSWORD_DEFAULT);
                 $this->authServices->register($name , $email , $password);
+                header("Location: /home");
+                exit();
             }
         }
+
+        public function logout() {}
     }

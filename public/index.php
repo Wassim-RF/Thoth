@@ -1,9 +1,11 @@
 <?php
     require_once '../app/core/router.php';
     require_once '../app/controllers/authController.php';
+    require_once '../app/controllers/studentController.php';
 
     use App\Core\Router;
     use App\Controllers\AuthController;
+    use App\Controllers\StudentController;
 
     $router = new Router();
 
@@ -12,5 +14,6 @@
     $router->add('GET', '/register', [AuthController::class , 'showRegisterPage']);
     $router->add('POST', '/login', [AuthController::class , 'login']);
     $router->add('POST', '/register', [AuthController::class , 'register']);
+    $router->add('GET', '/home', [StudentController::class , 'index']);
 
     $router->dispatch();

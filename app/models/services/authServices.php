@@ -20,7 +20,11 @@
 
             if ($student) {
                 if(password_verify($password , $student['password'])) {
+                    if (session_status() === PHP_SESSION_NONE) {
+                        session_start();
+                    }
                     $_SESSION['student'] = [
+                        'id' => $student['id'],
                         'name' => $student['name'],
                         'email' => $student['email']
                     ];
@@ -35,6 +39,14 @@
             $student = new Student($name , $email , $password);
 
             $this->studentRepositories->createStudent($student);
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['student'] = [
+                'id' => $this->studentRepositories->lastInseredId(),
+                'name' => $name,
+                'email' => $email
+            ];
         }
         
         public static function ifIsLogin() {
