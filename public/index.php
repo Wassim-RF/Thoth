@@ -15,5 +15,6 @@
     $router->add('POST', '/login', [AuthController::class , 'login']);
     $router->add('POST', '/register', [AuthController::class , 'register']);
     $router->add('GET', '/home', [StudentController::class , 'index']);
+    $router->add('GET', '/course', [StudentController::class , 'showCourse']);
 
     $router->dispatch();

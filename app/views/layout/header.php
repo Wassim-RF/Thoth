@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
+<header class="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200">
     <a href="/home" class="flex items-center gap-2 cursor-pointer">
         <div class="flex items-center justify-center gap-2.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="#155DFC"><g fill="none" stroke="#155DFC" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m4 10l8-4l8 4l-8 4zm16 0v4"/><path d="M7 12v5s.455 2 5 2c4.546 0 5-2 5-2v-5"/></g></svg>
@@ -32,4 +32,4 @@
             </div>
         </div>
     </a>
-</nav>
+</header>

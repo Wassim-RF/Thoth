@@ -18,7 +18,7 @@
                 <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-center hover:shadow-xl">
                     <div>
                         <p class="text-sm font-medium text-gray-500">Enrolled Courses</p>
-                        <h3 class="text-3xl font-bold text-slate-900 mt-1">2</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mt-1"><?= $enroledCoursesNbr ?></h3>
                     </div>
                     <div class="p-4 bg-blue-50 rounded-xl text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -81,7 +81,28 @@
             </div>
 
             <div class="grid grid-cols-4 gap-8">
-                <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <?php foreach ($courses as $course) : ?>
+                    <a href="/course?id=<?= $course['id'] ?>" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <img src="<?= $course['picture_link'] ?>" alt="<?= $course['title'] ?>" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2"><?= $course['title'] ?></h3>
+                            <p class="text-gray-500 text-sm mb-4"><?= $course['description'] ?></p>
+                            <div class="flex items-center gap-4 text-gray-400 text-xs mb-6">
+                                <span class="flex items-center gap-1">👤 <?= $course['course_creator'] ?></span>
+                                <span class="flex items-center gap-1">🕒 <?= $course['week_duration'] ?> weeks</span>
+                                <span class="flex items-center gap-1">📖 <?= $course['lessons_number'] ?> lessons</span>
+                            </div>
+
+                            <button class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors">
+                                Enroll Now
+                            </button>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+
+
+
+                <!-- <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                     <div class="relative">
                         <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Web Dev" class="w-full h-48 object-cover">
                         <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">Enrolled</span>
@@ -105,9 +126,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <!-- <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                     <img src="https://images.unsplash.com/photo-1544233726-9f1d2b27be8b?auto=format&fit=crop&w=600&q=80" alt="UI/UX" class="w-full h-48 object-cover">
                     <div class="p-5">
                         <h3 class="text-xl font-bold text-slate-900 mb-2">UI/UX Design Masterclass</h3>
@@ -122,7 +143,7 @@
                             Enroll Now
                         </button>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

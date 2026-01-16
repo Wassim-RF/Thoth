@@ -21,6 +21,13 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function findCourseById(int $id) {
+            $sql = "SELECT * FROM courses WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
         public function ifIsEnrollmentsInTheCourses(int $id) {
             $sql = "SELECT * FROM enrollments WHERE student_id = :id";
             $stmt = $this->pdo->prepare($sql);
@@ -33,5 +40,12 @@
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['id' => $id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function enrolledCoursesNumber(int $id) {
+            $sql = "SELECT COUNT(*) FROM enrollments WHERE student_id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetchColumn();
         }
     }

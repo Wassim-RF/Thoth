@@ -17,4 +17,10 @@
         public function showCourses() {
             return $this->coursesRepositories->showAllCourse();
         }
+        public function enrolledCoursesNumber(int $id) {
+            return $this->coursesRepositories->enrolledCoursesNumber($id);
+        }
+        public function showCourseById(int $id) {
+            return $this->coursesRepositories->findCourseById($id);
+        }
     }
