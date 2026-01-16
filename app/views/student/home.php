@@ -82,22 +82,50 @@
 
             <div class="grid grid-cols-4 gap-8">
                 <?php foreach ($courses as $course) : ?>
-                    <a href="/course?id=<?= $course['id'] ?>" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                        <img src="<?= $course['picture_link'] ?>" alt="<?= $course['title'] ?>" class="w-full h-48 object-cover">
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold text-slate-900 mb-2"><?= $course['title'] ?></h3>
-                            <p class="text-gray-500 text-sm mb-4"><?= $course['description'] ?></p>
-                            <div class="flex items-center gap-4 text-gray-400 text-xs mb-6">
-                                <span class="flex items-center gap-1">👤 <?= $course['course_creator'] ?></span>
-                                <span class="flex items-center gap-1">🕒 <?= $course['week_duration'] ?> weeks</span>
-                                <span class="flex items-center gap-1">📖 <?= $course['lessons_number'] ?> lessons</span>
+                    <?php if (isset($enrolledCourses[$course['id']])) : ?>
+                        <a href="/course?id=<?= $course['id'] ?>" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="<?= $course['picture_link'] ?>" alt="<?= $course['title'] ?>" class="w-full h-48 object-cover">
+                                <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">Enrolled</span>
                             </div>
+                            <div class="p-5">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2"><?= $course['title'] ?></h3>
+                                <p class="text-gray-500 text-sm mb-4"><?= $course['description'] ?></p>
+                                <div class="flex items-center gap-4 text-gray-400 text-xs mb-6">
+                                    <span class="flex items-center gap-1">👤 <?= $course['course_creator'] ?></span>
+                                    <span class="flex items-center gap-1">🕒 <?= $course['week_duration'] ?> weeks</span>
+                                    <span class="flex items-center gap-1">📖 <?= $course['lessons_number'] ?> lessons</span>
+                                </div>
 
-                            <button class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors">
-                                Enroll Now
-                            </button>
-                        </div>
-                    </a>
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-2">
+                                        <span class="text-gray-400">Progress</span>
+                                        <span class="text-blue-600"><?= $enrolledCourses[$course['id']] ?>%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-100 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: <?= $enrolledCourses[$course['id']] ?>%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    <?php else: ?>
+                        <a href="/course?id=<?= $course['id'] ?>" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <img src="<?= $course['picture_link'] ?>" alt="<?= $course['title'] ?>" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <h3 class="text-xl font-bold text-slate-900 mb-2"><?= $course['title'] ?></h3>
+                                <p class="text-gray-500 text-sm mb-4"><?= $course['description'] ?></p>
+                                <div class="flex items-center gap-4 text-gray-400 text-xs mb-6">
+                                    <span class="flex items-center gap-1">👤 <?= $course['course_creator'] ?></span>
+                                    <span class="flex items-center gap-1">🕒 <?= $course['week_duration'] ?> weeks</span>
+                                    <span class="flex items-center gap-1">📖 <?= $course['lessons_number'] ?> lessons</span>
+                                </div>
+
+                                <button class="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors enrolle_button" data-course-id="<?= $course['id'] ?>">
+                                    Enroll Now
+                                </button>
+                            </div>
+                        </a>
+                    <?php endif; ?>
                 <?php endforeach; ?>
 
 
@@ -148,4 +176,28 @@
             </div>
         </div>
     </main>
+    <script>
+        document.querySelectorAll(".enrolle_button").forEach(btn => {
+            btn.addEventListener("click" , function() {
+                const courseId = this.dataset.courseId;
+                console.log(courseId);
+                console.log("clicked");
+                fetch('/enroll-course' , {
+                    method: 'POST' ,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        course_id: courseId
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        data.disables = true;
+                    }
+                })
+            });
+        });
+    </script>
 </body>

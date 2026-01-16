@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS enrollments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     course_id INT NOT NULL,
-    enrollment_pourcentage DECIMAL(3.1 ) DEFAULT 00.0,
-    enrollment_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    enrollment_pourcentage DECIMAL(3.1 ) DEFAULT 00.0
 );
 
 --@block
@@ -70,3 +69,8 @@ INSERT INTO courses (title, description, lessons_number, week_duration, course_c
     'Wassim Rifi',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66maIr-B_TplbH64YHH6iRFpe66vwI26gww&s'
 );
+
+--@block
+INSERT INTO enrollments (student_id, course_id, enrollment_pourcentage) VALUES
+(2, 1, 25.0),
+(2, 2, 60.5);

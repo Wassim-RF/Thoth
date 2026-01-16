@@ -32,6 +32,6 @@
                     }
                 }
             }
-            echo "404 - Page not found";
+            include_once __DIR__ . '/../views/Error/404.php';
         }
     }
